@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 # Initialize Tkinter
 root = tk.Tk()
 root.geometry("480x320")  # Set this based on your Waveshare display resolution (480x320)
+root.config(cursor="none")
 # Set the window to fullscreen
 root.attributes("-fullscreen", True)
 
@@ -23,6 +24,13 @@ tk_image = ImageTk.PhotoImage(image)
 # Create a label to display the image
 label = tk.Label(root, image=tk_image)
 label.pack()
+# Function to quit the application
+def quit_app(event):
+    root.quit()
 
+# Bind the "Escape" key to exit fullscreen
+root.bind("<Escape>", quit_app)
+# Bind the double-click event to the quit function
+root.bind("<Double-Button-1>", quit_app)
 # Start the Tkinter event loop
 root.mainloop()
